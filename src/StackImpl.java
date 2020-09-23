@@ -36,7 +36,7 @@ public class StackImpl implements Stack {
     public void push(Object item) {
         if (size >= list.length) {
             Object b[] = new Object[size + 5];
-            System.arraycopy(b, 0, list, 0, size);
+            System.arraycopy(list, 0, b, 0, size);
             list = b;
         }
         list[size++] = item;
