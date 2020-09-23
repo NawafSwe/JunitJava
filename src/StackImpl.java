@@ -18,7 +18,7 @@ public class StackImpl implements Stack {
      * @see Stack#isEmpty()
      */
     public boolean isEmpty() {
-        return size < 0;
+        return size == 0;
     }
 
     /**

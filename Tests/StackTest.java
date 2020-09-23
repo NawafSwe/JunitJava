@@ -83,6 +83,7 @@ public class StackTest {
     /**
      * popItemTest function which tests the functionality of popping an item from the top of a stack
      * popping item from stack must decreases the size of the stack
+     * if the stack is empty null must be returned
      * first we capture the size of the stack before popping any item from the stack
      * second we pop item from the stack
      * lastly we assert if the size of the stack decreased the test 'PASS' otherwise 'FAIL'
@@ -91,19 +92,24 @@ public class StackTest {
      **/
     @Test
     public void popItemTest() {
+        //checking if the stack is empty or not
+        if (this.stack.size() == 0) {
+            Assert.assertEquals("the value of pop must be null if the size is zero", null, this.stack.pop());
+        }
         //init the stack with some items
         this.stack.push(1);
         this.stack.push(2);
         this.stack.push(3);
-        this.stack.push(4);
-        this.stack.push(5);
-        this.stack.push(6);
-        this.stack.push(7);
+
         // before popping an object from the stack we want to hold the stack size to compare at the end
         int holdStackSize = this.stack.size();
+        //before popping
+        System.out.println(this.stack.toString());
 
         // popping the object from the stack if it is not empty
         this.stack.pop();
+        //after popping
+        System.out.println(this.stack.toString());
         // the size of the stack must be decreased after popping an element.
         Assert.assertTrue("the stack size must be decreased but it was not", holdStackSize > this.stack.size());
     }
@@ -111,6 +117,7 @@ public class StackTest {
     /**
      * topItemTest function that tests the functionality of getting the top element in the stack
      * pushing new element in the stack will be at the top, and calling the function top will return that item.
+     * if the stack is empty null must be returned
      * first we capture the size of the stack before adding a new item to the stack
      * second we create new object and push it into the stack where it will be at the top
      * third we assert that the item was added by asserting that the size of the stack was increased
@@ -121,6 +128,10 @@ public class StackTest {
      **/
     @Test
     public void topItemTest() {
+        //checking if the stack is empty or not
+        if (this.stack.size() == 0) {
+            Assert.assertEquals("the value of top must be null if the size is zero", null, this.stack.pop());
+        }
         //pushing elements to the stack
         this.stack.push(1);
         this.stack.push(2);
@@ -137,6 +148,7 @@ public class StackTest {
         this.stack.push(item);
         //also we can assert that the size was increased
         Assert.assertTrue(this.stack.size() > holdStackSize);
+        System.out.println(this.stack.toString());
         // assert that created item must be equals to the stack.top item to make sure it was added to the top and returned correctly
         Assert.assertEquals("the last item added was not returned with stack.top", item, stack.top());
 
