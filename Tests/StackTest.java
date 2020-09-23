@@ -29,7 +29,6 @@ public class StackTest {
      * if Asserted true then the result of the test 'PASS' otherwise 'FAIL' which means there is a bug
      * in the implementation code.
      * expected result is PASS.
-     * actual test result 'FAIL'
      **/
     @Test
     public void emptyStackTest() {
@@ -54,7 +53,6 @@ public class StackTest {
      * third we push the object into the stack
      * lastly we assert that is the size of the stack increased or not, if yes test result 'PASS' otherwise 'FAIL'
      * expected result is PASS
-     * actual test result 'PASS'
      **/
     @Test
     public void pushItemTest() {
@@ -88,7 +86,6 @@ public class StackTest {
      * second we pop item from the stack
      * lastly we assert if the size of the stack decreased the test 'PASS' otherwise 'FAIL'
      * expected result 'PASS'
-     * actual test result 'FAIL'
      **/
     @Test
     public void popItemTest() {
@@ -96,22 +93,23 @@ public class StackTest {
         if (this.stack.size() == 0) {
             Assert.assertEquals("the value of pop must be null if the size is zero", null, this.stack.pop());
         }
+        // popping the object from the stack if it is not empty
         //init the stack with some items
         this.stack.push(1);
         this.stack.push(2);
-        this.stack.push(3);
-
-        // before popping an object from the stack we want to hold the stack size to compare at the end
+        int lastItem = 3;
+        this.stack.push(lastItem);
+        //capturing the size of the stack before popping
         int holdStackSize = this.stack.size();
         //before popping
         System.out.println(this.stack.toString());
-
-        // popping the object from the stack if it is not empty
-        this.stack.pop();
+        Assert.assertEquals("the popped item not equals to the last item that pushed",lastItem, this.stack.pop());
         //after popping
         System.out.println(this.stack.toString());
         // the size of the stack must be decreased after popping an element.
         Assert.assertTrue("the stack size must be decreased but it was not", holdStackSize > this.stack.size());
+
+
     }
 
     /**
@@ -124,7 +122,6 @@ public class StackTest {
      * fourth we assert that stack.top equals the object created in step 2.
      * if the object equals then the test result is 'PASS' otherwise is 'FAIL'
      * expected result is 'PASS'
-     * actual test result 'PASS'
      **/
     @Test
     public void topItemTest() {
@@ -151,7 +148,6 @@ public class StackTest {
         System.out.println(this.stack.toString());
         // assert that created item must be equals to the stack.top item to make sure it was added to the top and returned correctly
         Assert.assertEquals("the last item added was not returned with stack.top", item, stack.top());
-
         //trying to get the top again and making sure it is the top again means it was not removed when it was returned
         Assert.assertEquals("the last item added was not returned with stack.top", item, stack.top());
 
@@ -173,7 +169,5 @@ public class StackTest {
         String endOfString = stackRepresentation.substring(stackRepresentation.length() - 1);
         Assert.assertEquals("stack string must be end with ]", "]", endOfString);
     }
-
-
 }
 

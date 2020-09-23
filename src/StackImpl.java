@@ -46,7 +46,7 @@ public class StackImpl implements Stack {
      * @see Stack#pop()
      */
     public Object pop() {
-        return (size <= 0) ? null : list[size--];
+        return (size <= 0) ? null : list[--size];
     }
 
     /**
